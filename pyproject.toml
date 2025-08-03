@@ -1,0 +1,76 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openfiles-async"
+version = "1.2.0"
+description = "SDK asíncrono de Python para interactuar con la API de Openfiles"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Openfiles Team", email = "support@openfiles.xyz"},
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+keywords = ["openfiles", "api", "async", "storage", "ton", "blockchain"]
+requires-python = ">=3.8"
+dependencies = [
+    "aiohttp>=3.8.0",
+    "aiofiles>=22.1.0",
+    "pydantic>=1.10.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
+    "black>=22.0.0",
+    "isort>=5.10.0",
+    "mypy>=1.0.0",
+    "flake8>=6.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Gusarich/openfiles-python-async"
+Documentation = "https://github.com/Gusarich/openfiles-python-async#readme"
+Repository = "https://github.com/Gusarich/openfiles-python-async"
+"Bug Tracker" = "https://github.com/Gusarich/openfiles-python-async/issues"
+
+[tool.setuptools.packages.find]
+include = ["openfiles_async*"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38']
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "--cov=openfiles_async --cov-report=term-missing"
+asyncio_mode = "auto"
